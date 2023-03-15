@@ -8,6 +8,8 @@ class Program
         Program.Task18();
         Program.Task19();
         Program.Task20();
+        Program.Task21();
+        Program.Task22();
     }
 
     static void Task18()
@@ -99,6 +101,87 @@ class Program
             for (int j = 0; j < result.GetLength(1); j++)
             {
                 Console.Write(result[i, j] + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+    static void Task21()
+    {
+        Console.WriteLine("Task 21");
+        int[,,] array3D = new int[2, 2, 2];
+        int value = 10;
+
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                for (int k = 0; k < 2; k++)
+                {
+                    array3D[i, j, k] = value;
+                    value++;
+                }
+            }
+        }
+
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < 2; j++)
+            {
+                for (int k = 0; k < 2; k++)
+                {
+                    Console.Write(array3D[i, j, k] + "(" + i + "," + j + "," + k + ") ");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+    }
+
+    static void Task22()
+    {
+        Console.WriteLine("Task 22");
+        int n = 4;
+        int[,] matrix = new int[n, n];
+        int value = 1;
+
+        int top = 0, bottom = n - 1, left = 0, right = n - 1;
+
+        while (value <= n * n)
+        {
+
+            for (int i = left; i <= right && value <= n * n; i++)
+            {
+                matrix[top, i] = value++;
+            }
+            top++;
+
+
+            for (int i = top; i <= bottom && value <= n * n; i++)
+            {
+                matrix[i, right] = value++;
+            }
+            right--;
+
+
+            for (int i = right; i >= left && value <= n * n; i--)
+            {
+                matrix[bottom, i] = value++;
+            }
+            bottom--;
+
+
+            for (int i = bottom; i >= top && value <= n * n; i--)
+            {
+                matrix[i, left] = value++;
+            }
+            left++;
+        }
+
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                Console.Write(matrix[i, j] + " ");
             }
             Console.WriteLine();
         }
